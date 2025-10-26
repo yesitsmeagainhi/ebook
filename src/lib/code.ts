@@ -1,34 +1,23 @@
-import { firestore } from "@/lib/firebase"; // adjust this import if you use a different firebase instance
+// src/lib/code.ts
 
 /**
- * Get a Firestore document reference safely.
+ * Generate a random code (A–Z, 0–9) of given length.
  */
-function getCodeRef(code?: string) {
-  const base = firestore
-    .collection("ebooks")
-    .doc("style-001")
-    .collection("codes");
-
-  // ✅ Always pass a string to .doc()
-  if (code) return base.doc(code);
-  return base.doc(); // auto-generates an ID
+function randomCode(len = 8) {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // no confusing chars
+  let out = "";
+  for (let i = 0; i < len; i++) {
+    out += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return out;
 }
 
 /**
- * Create a unique code with expiry.
+ * Create a unique code with an expiry timestamp.
+ * No external dependencies (works on Netlify/Vercel out of the box).
  */
 export async function createUniqueCode(minutesToExpire = 15) {
-  // create new doc with auto-ID
-  const ref = getCodeRef();
-  const code = ref.id;
-
+  const code = randomCode(8);
   const expiresAt = new Date(Date.now() + minutesToExpire * 60_000);
-  await ref.set({
-    code,
-    expiresAt,
-    used: false,
-    createdAt: new Date(),
-  });
-
   return { code, expiresAt };
 }
