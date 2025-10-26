@@ -1,0 +1,271 @@
+:root {
+  --ink: #0f172a;
+  --muted: #334155;
+  --line: #e2e8f0;
+  --bg-soft: #f8fafc;
+  --chip: #f1f5f9;
+  --cta: #111827;
+  --hint: #94a3b8;
+  --accent: #0f766e;
+}
+
+.page {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(180deg, #ffffff, var(--bg-soft));
+  padding: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.badgeWrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.badge {
+  font-size: 11px;
+  letter-spacing: 1px;
+  border: 1px solid var(--line);
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--chip);
+}
+
+/* HERO */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  align-items: center;
+}
+.heroText {
+  padding-right: 0;
+}
+.h1 {
+  font-size: clamp(26px, 6vw, 46px);
+  line-height: 1.15;
+  margin: 6px 0 10px;
+}
+.sub {
+  font-size: clamp(15px, 3.8vw, 18px);
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.priceRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.priceBox {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.mrp {
+  text-decoration: line-through;
+  color: var(--hint);
+  font-size: 16px;
+}
+.sale {
+  font-weight: 800;
+  font-size: clamp(22px, 5.2vw, 34px);
+}
+.tag {
+  margin-left: 4px;
+  font-size: 11px;
+  color: var(--accent);
+  background: #ecfeff;
+  border: 1px solid #cffafe;
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+.cta {
+  display: inline-block;
+  background: var(--cta);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+}
+.trustRow {
+  list-style: none;
+  display: flex;
+  gap: 12px;
+  padding: 0;
+  margin: 10px 0 0;
+  color: #475569;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+.heroImgWrap {
+  display: flex;
+  justify-content: center;
+}
+.heroImg {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.1);
+  background: #fff;
+  height: auto;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 26px;
+}
+.card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+  background: #fff;
+}
+.cardH {
+  margin: 0;
+  font-size: 16px;
+}
+.cardP {
+  margin: 6px 0 0;
+  color: #475569;
+  font-size: 14px;
+}
+
+/* PREVIEW */
+.preview {
+  margin-top: 28px;
+  border-radius: 16px;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+.h2 {
+  font-size: 18px;
+  margin: 0 0 8px 0;
+}
+.previewList {
+  margin: 6px 0 12px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 14.5px;
+}
+.note {
+  color: var(--accent);
+  font-size: 13.5px;
+  margin-bottom: 10px;
+}
+.ctaSecondary {
+  display: inline-block;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  padding: 10px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* FAQ */
+.faq {
+  margin-top: 22px;
+  display: grid;
+  gap: 10px;
+}
+.details {
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 12px 14px;
+  border-radius: 12px;
+}
+.summary {
+  font-weight: 700;
+  cursor: pointer;
+}
+.answer {
+  margin-top: 8px;
+  color: #475569;
+  font-size: 14px;
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 24px;
+  text-align: center;
+}
+.footerBox {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 14px;
+}
+.footerPrice {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+.mrpSmall {
+  text-decoration: line-through;
+  color: var(--hint);
+}
+.saleBig {
+  font-weight: 800;
+  font-size: 20px;
+}
+.ctaFooter {
+  display: inline-block;
+  background: var(--cta);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+}
+.legal {
+  margin-top: 8px;
+  color: var(--hint);
+  font-size: 12px;
+}
+
+/* Breakpoints */
+@media (min-width: 640px) {
+  .page {
+    padding: 24px;
+  }
+}
+
+@media (min-width: 860px) {
+  .hero {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 24px;
+  }
+  .heroText {
+    padding-right: 8px;
+  }
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .cta,
+  .ctaSecondary,
+  .ctaFooter {
+    transition: transform 0.08s ease;
+  }
+  .cta:hover,
+  .ctaSecondary:hover,
+  .ctaFooter:hover {
+    transform: translateY(-1px);
+  }
+}
