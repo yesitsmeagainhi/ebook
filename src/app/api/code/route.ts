@@ -1,18 +1,19 @@
 export const runtime = "nodejs";
 
-import { NextRequest, NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import { createUniqueCode } from "@/lib/code";
 
 /**
- * Creates a new unique code record.
- * (POST /u/[code]) — 15 min expiry by default
+ * POST /u/[code]
+ * If you don't need the [code] param here, you can ignore it.
  */
 export async function POST(
   _req: NextRequest,
-  context: { params: Promise<{ code: string }> }
+  context: { params: Promise<{ code: string }> } // Next 16: params is a Promise
 ) {
   try {
-    // If you need the URL param, await it:
+    // If you need it:
     // const { code } = await context.params;
 
     const rec = await createUniqueCode(15); // 15-min expiry
@@ -26,23 +27,21 @@ export async function POST(
 }
 
 /**
- * Fetches info about a specific code.
- * (GET /u/[code])
+ * GET /u/[code]
+ * Example lookup handler; remove if not needed.
  */
 export async function GET(
   _req: NextRequest,
-  context: { params: Promise<{ code: string }> }
+  context: { params: Promise<{ code: string }> } // Next 16: params is a Promise
 ) {
   try {
-    const { code } = await context.params; // 👈 await the Promise
-    // Example lookup — replace with real query if needed:
-    // const rec = await prisma.codes.findUnique({ where: { code } });
-
+    const { code } = await context.params; // await the params
+    // Example:
+    // const rec = await prisma.code.findUnique({ where: { code } });
     return NextResponse.json({
       success: true,
-      message: "Code lookup successful",
       code,
-      // record: rec || null,
+      // record: rec ?? null,
     });
   } catch (e: any) {
     return NextResponse.json(
