@@ -5,17 +5,14 @@ import { NextResponse } from "next/server";
 import { createUniqueCode } from "@/lib/code";
 
 /**
- * POST /u/[code]
- * If you don't need the [code] param here, you can ignore it.
+ * API route: POST /api/code
+ * Generates a unique short code with optional expiry (15 min default)
  */
 export async function POST(
   _req: NextRequest,
-  context: { params: Promise<{ code: string }> } // Next 16: params is a Promise
+  _context: { params: Promise<{}> } // 👈 for /api routes there are no params
 ) {
   try {
-    // If you need it:
-    // const { code } = await context.params;
-
     const rec = await createUniqueCode(15); // 15-min expiry
     return NextResponse.json({ code: rec.code });
   } catch (e: any) {
@@ -27,21 +24,19 @@ export async function POST(
 }
 
 /**
- * GET /u/[code]
- * Example lookup handler; remove if not needed.
+ * API route: GET /api/code
+ * Simple test handler (optional)
  */
 export async function GET(
   _req: NextRequest,
-  context: { params: Promise<{ code: string }> } // Next 16: params is a Promise
+  _context: { params: Promise<{}> } // 👈 empty params object
 ) {
   try {
-    const { code } = await context.params; // await the params
-    // Example:
-    // const rec = await prisma.code.findUnique({ where: { code } });
+    // Example demo response
     return NextResponse.json({
       success: true,
-      code,
-      // record: rec ?? null,
+      message: "API working",
+      timestamp: new Date().toISOString(),
     });
   } catch (e: any) {
     return NextResponse.json(
