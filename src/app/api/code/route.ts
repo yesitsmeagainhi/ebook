@@ -1,47 +1,50 @@
-// src/app/api/code/route.ts
-export const runtime = "nodejs";
+export const runtime = "nodejs"; // ensure Node runtime for Admin SDK
 
-import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { createUniqueCode } from "@/lib/code";
+import { getDb } from "@/lib/firebaseAdmin";   // 👈 use getDb
+import * as admin from "firebase-admin";
 
-/**
- * POST /api/code
- * Generates a short code with a 15-min expiry.
- */
-export async function POST(
-  _req: NextRequest,
-  _context: { params: Promise<{}> } // Next.js 16 expects Promise for params (empty for static routes)
-) {
-  try {
-    const rec = await createUniqueCode(15);
-    return NextResponse.json({ code: rec.code, expiresAt: rec.expiresAt });
-  } catch (e: any) {
-    return NextResponse.json(
-      { error: e?.message || "Failed to create code" },
-      { status: 500 }
-    );
-  }
-}
+type Body = { ebookId?: string; minutesToExpire?: number };
 
-/**
- * GET /api/code
- * Simple sanity ping (optional).
- */
-export async function GET(
-  _req: NextRequest,
-  _context: { params: Promise<{}> }
-) {
+export async function POST(req: Request) {
   try {
-    return NextResponse.json({
-      success: true,
-      message: "API OK",
-      at: new Date().toISOString(),
-    });
+    const body = await req.json().catch(() => ({} as Body));
+    const ebookId = body.ebookId || "style-001";
+    const minutesToExpire = body.minutesToExpire ?? 15;
+
+    const db = getDb(); // 👈
+    // generate unique 6-char code
+    let attempts = 0, code = "";
+    while (attempts++ < 5) {
+      const { code: c, expiresAt } = await createUniqueCode(minutesToExpire);
+      const docRef = db.collection("ebookCodes").doc(ebookId).collection("codes").doc(c);
+      const snap = await docRef.get();
+      if (snap.exists) continue;
+
+      await docRef.set({
+        code: c,
+        status: "unused",
+        source: "next-app",
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        expiresAt: admin.firestore.Timestamp.fromDate(expiresAt),
+        usedAt: null,
+        usedBy: null,
+      });
+
+      await db.collection("ebookCodes").doc(ebookId).set(
+        { exists: true, updatedAt: admin.firestore.FieldValue.serverTimestamp() },
+        { merge: true }
+      );
+
+      code = c;
+      break;
+    }
+
+    if (!code) return NextResponse.json({ error: "Could not allocate code" }, { status: 500 });
+    return NextResponse.json({ code });
   } catch (e: any) {
-    return NextResponse.json(
-      { error: e?.message || "Failed to fetch" },
-      { status: 500 }
-    );
+    console.error("Create code error:", e);
+    return NextResponse.json({ error: e?.message || "Internal error" }, { status: 500 });
   }
 }
