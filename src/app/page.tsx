@@ -9,7 +9,7 @@ export const metadata = {
     description:
       "A simple, step-by-step guide to transform your style. Launch offer ₹9 for a limited time.",
     images: [
-      "https://dressingschool.com/wp-content/uploads/2025/10/Transform-ZERO-TO-HERO.png",
+      "/wp-content/uploads/2025/10/Transform-ZERO-TO-HERO.png",
     ],
   },
   twitter: { card: "summary_large_image" },
