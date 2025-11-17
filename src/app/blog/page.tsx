@@ -1,17 +1,49 @@
 import Link from 'next/link';
-import { PrismaClient } from '@prisma/client';
 
-// Use a global Prisma client to avoid too many connections in dev
-const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
-const prisma = globalForPrisma.prisma || new PrismaClient();
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+// TypeScript interface for the post object
+interface Post {
+  id: string;
+  title: string;
+  slug: string;
+  content: string;
+  published: boolean;
+  createdAt: Date;
+}
 
-// This is a Server Component, so it can fetch data directly!
+// Mock data - replace with your actual data fetching logic
+// NOTE: This data will not persist and is for demonstration only
+const mockPosts: Post[] = [
+  {
+    id: '1',
+    title: 'Welcome to Our Blog',
+    slug: 'welcome-to-our-blog',
+    content: '<p>This is our first blog post. Welcome to our new website!</p><p>We will be sharing updates and insights here regularly.</p>',
+    published: true,
+    createdAt: new Date('2024-01-15'),
+  },
+  {
+    id: '2',
+    title: 'Getting Started with Next.js',
+    slug: 'getting-started-with-nextjs',
+    content: '<p>Next.js is a powerful React framework that enables server-side rendering and static site generation.</p><p>In this post, we explore the basics of getting started.</p>',
+    published: true,
+    createdAt: new Date('2024-01-20'),
+  },
+  {
+    id: '3',
+    title: 'Understanding Server Components',
+    slug: 'understanding-server-components',
+    content: '<p>React Server Components are a new paradigm in React development that allows components to render on the server.</p><p>Learn how they work and when to use them.</p>',
+    published: true,
+    createdAt: new Date('2024-01-25'),
+  },
+];
+
+// This is a Server Component
 export default async function BlogPage() {
-  const posts = await prisma.post.findMany({
-    where: { published: true },
-    orderBy: { createdAt: 'desc' },
-  });
+  // Replace this with your actual data fetching logic
+  // Example: const posts = await fetch('https://your-api.com/posts').then(res => res.json())
+  const posts = mockPosts;
 
   return (
     <div className="max-w-4xl mx-auto p-6">
