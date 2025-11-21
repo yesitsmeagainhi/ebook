@@ -10,7 +10,7 @@ export const metadata = {
     title: "Day 10: Stop Using Soap on Your Face",
     description: "Soap is for your body. Face wash is for your face. Here is why.",
     images: [
-      "https://i.pinimg.com/1200x/54/80/88/548088cde944e8d83a825e1154472567.jpg",
+      "../images/mens-fashion-tips/mens-fashion-tips-day-10-stop-using-soap-on-your-face.png",
     ],
   },
   twitter: { card: "summary_large_image" },
@@ -70,7 +70,7 @@ export default function DayTenSkincare() {
 
           <div className={styles.heroImgWrap}>
             <img
-              src="https://i.pinimg.com/1200x/54/80/88/548088cde944e8d83a825e1154472567.jpg"
+              src="../images/mens-fashion-tips/mens-fashion-tips-day-10-stop-using-soap-on-your-face.png"
               alt="Man washing face correctly"
               className={styles.heroImg}
               loading="lazy"

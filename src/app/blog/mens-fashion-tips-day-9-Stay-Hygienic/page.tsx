@@ -10,7 +10,7 @@ export const metadata = {
     title: "Day 9: Hygiene & Scent Guide",
     description: "Bad breath or body odor kills the best outfit instantly. Master the basics.",
     images: [
-      "https://images.unsplash.com/photo-1621786032758-9491608d5c0d?auto=format&fit=crop&w=1200&q=80",
+      "../images/mens-fashion-tips/mens-fashion-tips-day-9-hygiene-and-scent-guide.png",
     ],
   },
   twitter: { card: "summary_large_image" },
@@ -70,7 +70,7 @@ export default function DayNineHygiene() {
           <div className={styles.heroImgWrap}>
             {/* Updated image representing a clean, groomed man */}
             <img
-              src="https://i.pinimg.com/736x/f1/c0/00/f1c00095b956de9a48ad3461e1df824a.jpg"
+              src="../images/mens-fashion-tips/mens-fashion-tips-day-9-hygiene-and-scent-guide.png"
               alt="Clean and well-groomed man looking fresh"
               className={styles.heroImg}
               loading="lazy"

@@ -10,7 +10,7 @@ export const metadata = {
     title: "Day 5: Wear Minimal Guide",
     description: "The 'Old Money' aesthetic on a budget. Essential color palettes.",
     images: [
-      "https://m.media-amazon.com/images/I/61l9nfy3RwL._SY741_.jpg",
+      "../images/mens-fashion-tips/mens-fashion-tips-day-5-wear-minimal.png",
     ],
   },
   twitter: { card: "summary_large_image" },
@@ -70,7 +70,7 @@ export default function DayFiveMinimal() {
 
           <div className={styles.heroImgWrap}>
             <img
-              src="https://m.media-amazon.com/images/I/61l9nfy3RwL._SY741_.jpg"
+              src="../images/mens-fashion-tips/mens-fashion-tips-day-5-wear-minimal.png"
               alt="Minimalist Style"
               className={styles.heroImg}
               loading="lazy"

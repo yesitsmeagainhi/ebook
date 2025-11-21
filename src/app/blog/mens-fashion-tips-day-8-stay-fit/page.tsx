@@ -10,7 +10,7 @@ export const metadata = {
     title: "Day 8: Hit the Gym",
     description: "Your body is the hanger. Improve the hanger, improve the outfit.",
     images: [
-      "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1200&q=80",
+      "../images/mens-fashion-tips/mens-fashion-tips-day-8-hit-the-gym.png",
     ],
   },
   twitter: { card: "summary_large_image" },
@@ -70,7 +70,7 @@ export default function DayEightGym() {
 
           <div className={styles.heroImgWrap}>
             <img
-              src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1200&q=80"
+              src="../images/mens-fashion-tips/mens-fashion-tips-day-8-hit-the-gym.png"
               alt="Man working out in gym"
               className={styles.heroImg}
               loading="lazy"

@@ -3,14 +3,14 @@ import styles from "./landing.module.css";
 export const runtime = "nodejs";
 
 export const metadata = {
-  title: "Day 3: Minimal Accessories – Watch, Shoes, Belt, Wallet | Dressingschool",
+  title: "Mens Fashion Tips Day 3: Minimal Accessories – Watch, Shoes, Belt, Wallet | Dressingschool",
   description:
     "Day 3 of Style Transformation. Master the 'Big 4' accessories. Learn the leather matching rule and why a slim wallet matters.",
   openGraph: {
     title: "Day 3: Minimal Accessories Guide",
     description: "You don't need jewelry. You need these 4 items on point.",
     images: [
-      "../wp-content/uploads/2025/10/basic-accessories.png",
+      "../images/mens-fashion-tips/mens-fashion-tips-day-3-mens-accessories.png",
     ],
   },
   twitter: { card: "summary_large_image" },
@@ -70,7 +70,7 @@ export default function DayThreeAccessories() {
 
           <div className={styles.heroImgWrap}>
             <img
-              src="../../wp-content/uploads/2025/10/basic-accessories.png"
+              src="../images/mens-fashion-tips/mens-fashion-tips-day-3-mens-accessories.png"
               alt="Minimalist watch and leather accessories"
               className={styles.heroImg}
               loading="lazy"

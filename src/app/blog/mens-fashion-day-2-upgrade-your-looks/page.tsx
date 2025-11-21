@@ -7,10 +7,10 @@ export const metadata = {
   description:
     "Day 2 of Style Transformation. Why fit matters more than brands. Learn the 3 golden rules of perfect fit for men.",
   openGraph: {
-    title: "Day 2: The Perfect Fit Guide",
+    title: "Mens Fashion Tip Day 2: The Perfect Fit Guide",
     description: "A cheap fitted shirt looks better than an expensive baggy one.",
     images: [
-      "https://images.unsplash.com/photo-1593032465175-481ac7f401a0?auto=format&fit=crop&w=1200&q=80",
+      "../images/mens-fashion-tips/mens-fashion-tips-day-2-perfect-fit.png",
     ],
   },
   twitter: { card: "summary_large_image" },
@@ -70,7 +70,7 @@ export default function DayTwoFit() {
 
           <div className={styles.heroImgWrap}>
             <img
-              src="../../wp-content/uploads/2025/10/wear-perfect-fit.png"
+              src="../images/mens-fashion-tips/mens-fashion-tips-day-2-perfect-fit.png"
               alt="Man in perfectly fitted shirt"
               className={styles.heroImg}
               loading="lazy"

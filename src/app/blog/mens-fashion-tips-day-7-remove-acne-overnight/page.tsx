@@ -3,14 +3,14 @@ import styles from "./landing.module.css";
 export const runtime = "nodejs";
 
 export const metadata = {
-  title: "Day 7: Reduce Acne Overnight – Acnestar Gel Review | Dressingschool",
+  title: "Mens Fashion Tips Day 7: Reduce Acne Overnight – Acnestar Gel Review | Dressingschool",
   description:
     "Day 7 of Style Transformation. How to fix a pimple overnight without popping it. The Acnestar Gel spot treatment guide.",
   openGraph: {
     title: "Day 7: The Overnight Acne Fix",
     description: "Don't pop it. Dry it out. The emergency fix for sudden pimples.",
     images: [
-      "https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&fit=crop&w=1200&q=80",
+      "../images/mens-fashion-tips/mens-fashion-tips-day-7-the-overnight-acne-fix.png",
     ],
   },
   twitter: { card: "summary_large_image" },
@@ -70,7 +70,7 @@ export default function DaySevenAcne() {
 
           <div className={styles.heroImgWrap}>
             <img
-              src="../images/mens-fashion-tips/day-7-tip-clear-skin-overnight.png"
+              src="../images/mens-fashion-tips/mens-fashion-tips-day-7-the-overnight-acne-fix.png"
               alt="Man applying skincare spot treatment"
               className={styles.heroImg}
               loading="lazy"

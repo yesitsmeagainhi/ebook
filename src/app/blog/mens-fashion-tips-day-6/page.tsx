@@ -10,7 +10,7 @@ export const metadata = {
     title: "Day 6: The Ironing Rule",
     description: "Stop ruining your outfits with wrinkles. The simple hack to looking expensive.",
     images: [
-      "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=1200&q=80",
+      "../images/mens-fashion-tips/mens-fashion-tips-day-6-the-ironing-rule.png",
     ],
   },
   twitter: { card: "summary_large_image" },
@@ -69,7 +69,7 @@ export default function DaySixIroning() {
 
           <div className={styles.heroImgWrap}>
             <img
-              src="../../images/mens-fashion-tips/DAY-6-Tip-Wear-Ironed-Clothes.png"
+              src="../images/mens-fashion-tips/mens-fashion-tips-day-6-the-ironing-rule.png"
               alt="Crisp Ironed Shirts"
               className={styles.heroImg}
               loading="lazy"

@@ -8,9 +8,9 @@ export const metadata = {
     "Learn how to get rid of dandruff effectively. We compare the best anti-dandruff shampoo vs. free natural methods to remove dandruff at home.",
   openGraph: {
     title: "How to Get Rid of Dandruff: The Complete Guide",
-    description: "Stop the itching today. Product solution vs. Zero-cost home habits.",
+    description: "Get Rid of Dandruff. Stop the itching today. Product solution vs. Zero-cost home habits.",
     images: [
-      "https://i.pinimg.com/736x/78/b4/74/78b4746e3c0f2d4caee3dcff37a12128.jpg",
+      "../images/mens-fashion-tips/mens-fashion-tips-day-1-get-rid-of-dandruff.png",
     ],
   },
   twitter: { card: "summary_large_image" },

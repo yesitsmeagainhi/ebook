@@ -3,14 +3,14 @@ import styles from "./landing.module.css";
 export const runtime = "nodejs";
 
 export const metadata = {
-  title: "Day 4: Smell Good – Fogg Impressio Review | Dressingschool",
+  title: "Mens Fashion Tip Day 4: Smell Good – Fogg Impressio Review | Dressingschool",
   description:
     "Day 4 of Style Transformation. Why you need an Eau De Parfum, not just a deodorant. Fogg Impressio review and how to apply fragrance correctly.",
   openGraph: {
     title: "Day 4: Smell Good Guide",
     description: "Smelling expensive doesn't have to cost ₹5,000. The budget king of perfumes.",
     images: [
-      "https://m.media-amazon.com/images/I/71dUvB1dxBL._SL1500_.jpg",
+      "../images/mens-fashion-tips/mens-fashion-tips-day-4-best-perfume-under-500.png",
     ],
   },
   twitter: { card: "summary_large_image" },
