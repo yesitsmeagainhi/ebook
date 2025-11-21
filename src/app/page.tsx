@@ -17,7 +17,7 @@ export const metadata = {
 
 import styles from "./landing.module.css";
 
-const BUY_URL = "https://rzp.io/rzp/zero-to-hero-ebooks"; // Razorpay link
+const BUY_URL = "https://rzp.io/rzp/zero-to-hero-ebook"; // Razorpay link
 
 export default function Landing() {
   const year = new Date().getFullYear();
