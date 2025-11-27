@@ -70,7 +70,7 @@ export default function DayTwoFit() {
 
           <div className={styles.heroImgWrap}>
             <img
-              src="../images/mens-fashion-tips/mens-fashion-tips-day-2-perfect-fit.png"
+              src="../images/mens-fashion-tips/mens-fashion-tips-day-2-perfect-fit-guide.png"
               alt="Man in perfectly fitted shirt"
               className={styles.heroImg}
               loading="lazy"

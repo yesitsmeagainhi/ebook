@@ -10,7 +10,7 @@ export const metadata = {
     title: "Day 3: Minimal Accessories Guide",
     description: "You don't need jewelry. You need these 4 items on point.",
     images: [
-      "../images/mens-fashion-tips/mens-fashion-tips-day-3-mens-accessories.png",
+      "../images/mens-fashion-tips/mens-fashion-tips-day-3-minimal-accessories.png",
     ],
   },
   twitter: { card: "summary_large_image" },
@@ -70,7 +70,7 @@ export default function DayThreeAccessories() {
 
           <div className={styles.heroImgWrap}>
             <img
-              src="../images/mens-fashion-tips/mens-fashion-tips-day-3-mens-accessories.png"
+              src="../images/mens-fashion-tips/mens-fashion-tips-day-3-minimal-accessories.png"
               alt="Minimalist watch and leather accessories"
               className={styles.heroImg}
               loading="lazy"

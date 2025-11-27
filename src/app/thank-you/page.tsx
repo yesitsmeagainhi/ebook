@@ -11,22 +11,21 @@ export default function GetCodePage() {
     "idle"
   );
   const [message, setMessage] = useState<string>("");
+  const [copied, setCopied] = useState<boolean>(false);
 
   useEffect(() => {
     (async () => {
       setStatus("loading");
 
       try {
-        // 1) If a code already exists in this browser, reuse it.
         const existing = localStorage.getItem(LS_KEY);
         if (existing) {
           setCode(existing);
-          setMessage("Copy and paste below unique code in app");
+          setMessage("Click the code below to copy it. Use it in the app to unlock your book.");
           setStatus("done");
           return;
         }
 
-        // 2) Otherwise, create a new code via API (server handles uniqueness & Firestore push)
         const res = await fetch("/api/code", { method: "POST" });
         if (!res.ok) {
           const text = await res.text().catch(() => "");
@@ -37,7 +36,7 @@ export default function GetCodePage() {
 
         localStorage.setItem(LS_KEY, data.code);
         setCode(data.code);
-        setMessage("Your unique code is ready.");
+        setMessage("Your unique book unlock code is ready. Click to copy!");
         setStatus("done");
       } catch (e: any) {
         console.error("Get code error:", e);
@@ -46,6 +45,24 @@ export default function GetCodePage() {
       }
     })();
   }, []);
+
+  const handleCopyCode = async () => {
+    if (!code) return;
+    
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      setMessage("✓ Code copied! Paste it in the app to unlock your book.");
+      
+      setTimeout(() => {
+        setCopied(false);
+        setMessage("Click the code to copy again. Use it in the app to unlock your book.");
+      }, 2500);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+      setMessage("Failed to copy code. Please try selecting and copying manually.");
+    }
+  };
 
   return (
     <main
@@ -75,64 +92,60 @@ export default function GetCodePage() {
             display: "inline-block",
             fontSize: 12,
             letterSpacing: 1,
-            border: "1px solid #e2e8f0",
+            border: "1px solid #cbd5e1", // Darker border for better definition
             padding: "6px 10px",
             borderRadius: 999,
-            background: "#f1f5f9",
+            background: "#f8fafc",
+            color: "#334155", // Darker text color
             marginBottom: 12,
+            fontWeight: 600,
           }}
         >
           UNIQUE ACCESS CODE
         </div>
 
-        <h1 style={{ margin: "6px 0 10px", fontSize: 24 }}>Your EBook Code</h1>
+        <h1 style={{ margin: "6px 0 10px", fontSize: 24, color: "#0f172a" }}>Your Book Unlock Code</h1>
 
-        {status === "loading" && <p>Generating your code…</p>}
+        {status === "loading" && <p style={{ color: "#334155" }}>Generating your code…</p>}
 
         {(status === "done" || status === "error") && (
           <>
-            <p style={{ color: status === "error" ? "#b91c1c" : "#334155" }}>
+            <p style={{ color: status === "error" ? "#b91c1c" : "#1e293b", fontWeight: 500, marginBottom: 12 }}>
               {message}
             </p>
 
             {code ? (
               <>
-                <div
+                <button
+                  onClick={handleCopyCode}
                   style={{
                     margin: "12px auto 10px",
                     padding: "12px 16px",
                     fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-                    border: "1px dashed #cbd5e1",
+                    border: "2px dashed #94a3b8", // More visible border
                     borderRadius: 12,
-                    display: "inline-block",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px",
                     fontSize: 20,
                     fontWeight: 800,
                     letterSpacing: 2,
-                    background: "#f8fafc",
+                    background: copied ? "#d1fae5" : "#f1f5f9", // Slightly darker background
+                    cursor: "pointer",
+                    color: "#0f172a", // Darker code text
+                    transition: "all 0.2s ease",
                   }}
                 >
-                  {code}
-                </div>
+                  <span>{code}</span>
+                  {copied ? (
+                    <span style={{ fontSize: 14, color: "#059669", fontWeight: 600 }}>✓ Copied!</span>
+                  ) : (
+                    <span style={{ fontSize: 14, color: "#475569", fontWeight: 500 }}>Click to copy</span>
+                  )}
+                </button>
 
-                <div style={{ marginTop: 8 }}>
-                  <Link
-                    href={`/u/${code}`}
-                    style={{
-                      display: "inline-block",
-                      background: "#111827",
-                      color: "#fff",
-                      padding: "10px 16px",
-                      borderRadius: 10,
-                      textDecoration: "none",
-                      fontWeight: 600,
-                    }}
-                  >
-                    Use this link once
-                  </Link>
-                </div>
-
-                <p style={{ color: "#64748b", fontSize: 12, marginTop: 8 }}>
-                  This link will work exactly once. The same code is saved in this browser.
+                <p style={{ color: "#334155", fontSize: 13, marginTop: 8, fontWeight: 500 }}> {/* Darker helper text */}
+                  Use this code in the app to unlock your book
                 </p>
 
                 <div style={{ marginTop: 12 }}>
@@ -154,7 +167,7 @@ export default function GetCodePage() {
               </>
             ) : (
               <>
-                <p style={{ color: "#b91c1c" }}>
+                <p style={{ color: "#b91c1c", fontWeight: 500 }}>
                   Couldn’t get a code. Please try again.
                 </p>
                 <button
