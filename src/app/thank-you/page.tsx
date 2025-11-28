@@ -18,6 +18,7 @@ export default function GetCodePage() {
       setStatus("loading");
 
       try {
+        // Check for existing code in localStorage
         const existing = localStorage.getItem(LS_KEY);
         if (existing) {
           setCode(existing);
@@ -26,6 +27,7 @@ export default function GetCodePage() {
           return;
         }
 
+        // Generate new code via secure API route
         const res = await fetch("/api/code", { method: "POST" });
         if (!res.ok) {
           const text = await res.text().catch(() => "");
@@ -92,11 +94,11 @@ export default function GetCodePage() {
             display: "inline-block",
             fontSize: 12,
             letterSpacing: 1,
-            border: "1px solid #cbd5e1", // Darker border for better definition
+            border: "1px solid #cbd5e1",
             padding: "6px 10px",
             borderRadius: 999,
             background: "#f8fafc",
-            color: "#334155", // Darker text color
+            color: "#334155",
             marginBottom: 12,
             fontWeight: 600,
           }}
@@ -122,7 +124,7 @@ export default function GetCodePage() {
                     margin: "12px auto 10px",
                     padding: "12px 16px",
                     fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-                    border: "2px dashed #94a3b8", // More visible border
+                    border: "2px dashed #94a3b8",
                     borderRadius: 12,
                     display: "inline-flex",
                     alignItems: "center",
@@ -130,9 +132,9 @@ export default function GetCodePage() {
                     fontSize: 20,
                     fontWeight: 800,
                     letterSpacing: 2,
-                    background: copied ? "#d1fae5" : "#f1f5f9", // Slightly darker background
+                    background: copied ? "#d1fae5" : "#f1f5f9",
                     cursor: "pointer",
-                    color: "#0f172a", // Darker code text
+                    color: "#0f172a",
                     transition: "all 0.2s ease",
                   }}
                 >
@@ -144,7 +146,7 @@ export default function GetCodePage() {
                   )}
                 </button>
 
-                <p style={{ color: "#334155", fontSize: 13, marginTop: 8, fontWeight: 500 }}> {/* Darker helper text */}
+                <p style={{ color: "#334155", fontSize: 13, marginTop: 8, fontWeight: 500 }}>
                   Use this code in the app to unlock your book
                 </p>
 
