@@ -9,7 +9,7 @@ export const metadata = {
     description:
       "A simple, step-by-step guide to transform your style. Launch offer ₹9 for a limited time.",
     images: [
-      "/wp-content/uploads/2025/10/Transform-ZERO-TO-HERO.png",
+      "https://dressingschool.com/wp-content/uploads/2025/10/Transform-ZERO-TO-HERO.png",
     ],
   },
   twitter: { card: "summary_large_image" },
@@ -18,6 +18,8 @@ export const metadata = {
 import styles from "./landing.module.css";
 
 const BUY_URL = "https://rzp.io/rzp/zero-to-hero-ebook"; // Razorpay link
+const APP_URL =
+  "https://play.google.com/store/apps/details?id=com.dressingschool"; // Play Store link
 
 export default function Landing() {
   const year = new Date().getFullYear();
@@ -29,6 +31,38 @@ export default function Landing() {
         {/* Top badge */}
         <div className={styles.badgeWrap}>
           <span className={styles.badge}>LAUNCH SALE — LIMITED TIME</span>
+        </div>
+
+        {/* App download button just below badge */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: 8,
+            marginBottom: 18,
+          }}
+        >
+          <a
+            href={APP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "8px 16px",
+              borderRadius: 999,
+              background:
+                "linear-gradient(90deg, rgba(15,23,42,0.96), rgba(37,99,235,0.96))",
+              color: "#f9fafb",
+              fontSize: 13,
+              fontWeight: 600,
+              textDecoration: "none",
+              boxShadow: "0 6px 18px rgba(15,23,42,0.25)",
+            }}
+          >
+            <span>Download Dressingschool app</span>
+          </a>
         </div>
 
         {/* Hero */}
@@ -157,7 +191,7 @@ export default function Landing() {
           <p className={styles.legal}>© {year} Dressingschool</p>
         </footer>
 
-        {/* Fixed Launch Offer Bar */}
+        {/* Fixed Launch Offer Bar (bottom) */}
         <aside
           className={styles.stickyBar}
           role="region"
@@ -165,9 +199,12 @@ export default function Landing() {
         >
           <div className={styles.stickyInner}>
             <div className={styles.stickyText}>
-              <span className={styles.soonFlag}>Soon</span> it will be{" "}
-              <strong className={styles.soonPrice}>₹299</strong> — launch offer{" "}
-              <strong className={styles.nowPrice}>₹9</strong>
+              <span className={styles.soonFlag}>Limited Time</span>{" "}
+              <span>
+                Soon the ebook will be{" "}
+                <strong className={styles.soonPrice}>₹299</strong>. Unlock it
+                now for <strong className={styles.nowPrice}>₹9</strong>.
+              </span>
             </div>
             <a
               href={BUY_URL}

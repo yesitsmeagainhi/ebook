@@ -22,7 +22,9 @@ export default function GetCodePage() {
         const existing = localStorage.getItem(LS_KEY);
         if (existing) {
           setCode(existing);
-          setMessage("Click the code below to copy it. Use it in the app to unlock your book.");
+          setMessage(
+            "Click the code below to copy it, then paste it inside the DressingSchool app to unlock your book. If you don’t have the app, download it from Play Store."
+          );
           setStatus("done");
           return;
         }
@@ -38,11 +40,15 @@ export default function GetCodePage() {
 
         localStorage.setItem(LS_KEY, data.code);
         setCode(data.code);
-        setMessage("Your unique book unlock code is ready. Click to copy!");
+        setMessage(
+          "Your unique book unlock code is ready. Tap the code to copy it, then paste it inside the DressingSchool app. If you don’t have the app, download it from Play Store."
+        );
         setStatus("done");
       } catch (e: any) {
         console.error("Get code error:", e);
-        setMessage(e?.message || "Something went wrong while creating your code.");
+        setMessage(
+          e?.message || "Something went wrong while creating your code."
+        );
         setStatus("error");
       }
     })();
@@ -50,26 +56,33 @@ export default function GetCodePage() {
 
   const handleCopyCode = async () => {
     if (!code) return;
-    
+
     try {
       await navigator.clipboard.writeText(code);
       setCopied(true);
-      setMessage("✓ Code copied! Paste it in the app to unlock your book.");
-      
+      setMessage(
+        "✓ Code copied! Open the DressingSchool app and paste this code to unlock your book. If you don’t have the app, download it from Play Store."
+      );
+
       setTimeout(() => {
         setCopied(false);
-        setMessage("Click the code to copy again. Use it in the app to unlock your book.");
+        setMessage(
+          "Click the code again to copy it. Paste it inside the DressingSchool app to unlock your book. If you don’t have the app, download it from Play Store."
+        );
       }, 2500);
     } catch (err) {
       console.error("Failed to copy:", err);
-      setMessage("Failed to copy code. Please try selecting and copying manually.");
+      setMessage(
+        "Failed to copy code. Please try selecting and copying it manually, then paste it inside the DressingSchool app."
+      );
     }
   };
 
   return (
     <main
       style={{
-        fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif",
+        fontFamily:
+          "Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif",
         minHeight: "100dvh",
         display: "grid",
         placeItems: "center",
@@ -106,13 +119,60 @@ export default function GetCodePage() {
           UNIQUE ACCESS CODE
         </div>
 
-        <h1 style={{ margin: "6px 0 10px", fontSize: 24, color: "#0f172a" }}>Your Book Unlock Code</h1>
+        <h1
+          style={{
+            margin: "6px 0 10px",
+            fontSize: 24,
+            color: "#0f172a",
+          }}
+        >
+          Your Book Unlock Code
+        </h1>
 
-        {status === "loading" && <p style={{ color: "#334155" }}>Generating your code…</p>}
+        {/* Short instruction explaining what to do */}
+        <p
+          style={{
+            color: "#475569",
+            fontSize: 14,
+            marginBottom: 10,
+          }}
+        >
+          1️⃣ Click the code to copy &nbsp;•&nbsp; 2️⃣ Open the DressingSchool
+          app &nbsp;•&nbsp; 3️⃣ Paste the code to unlock your book.
+        </p>
+
+        {/* Play Store download hint */}
+        <p
+          style={{
+            color: "#64748b",
+            fontSize: 13,
+            marginBottom: 14,
+          }}
+        >
+          If you don&apos;t have the app, download it from Play Store:{" "}
+          <a
+            href="https://play.google.com/store/apps/details?id=com.dressingschool"
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "#0f172a", fontWeight: 600, textDecoration: "none" }}
+          >
+            Download DressingSchool
+          </a>
+        </p>
+
+        {status === "loading" && (
+          <p style={{ color: "#334155" }}>Generating your code…</p>
+        )}
 
         {(status === "done" || status === "error") && (
           <>
-            <p style={{ color: status === "error" ? "#b91c1c" : "#1e293b", fontWeight: 500, marginBottom: 12 }}>
+            <p
+              style={{
+                color: status === "error" ? "#b91c1c" : "#1e293b",
+                fontWeight: 500,
+                marginBottom: 12,
+              }}
+            >
               {message}
             </p>
 
@@ -123,7 +183,8 @@ export default function GetCodePage() {
                   style={{
                     margin: "12px auto 10px",
                     padding: "12px 16px",
-                    fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+                    fontFamily:
+                      "ui-monospace, SFMono-Regular, Menlo, monospace",
                     border: "2px dashed #94a3b8",
                     borderRadius: 12,
                     display: "inline-flex",
@@ -140,14 +201,38 @@ export default function GetCodePage() {
                 >
                   <span>{code}</span>
                   {copied ? (
-                    <span style={{ fontSize: 14, color: "#059669", fontWeight: 600 }}>✓ Copied!</span>
+                    <span
+                      style={{
+                        fontSize: 14,
+                        color: "#059669",
+                        fontWeight: 600,
+                      }}
+                    >
+                      ✓ Copied!
+                    </span>
                   ) : (
-                    <span style={{ fontSize: 14, color: "#475569", fontWeight: 500 }}>Click to copy</span>
+                    <span
+                      style={{
+                        fontSize: 14,
+                        color: "#475569",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Click to copy
+                    </span>
                   )}
                 </button>
 
-                <p style={{ color: "#334155", fontSize: 13, marginTop: 8, fontWeight: 500 }}>
-                  Use this code in the app to unlock your book
+                <p
+                  style={{
+                    color: "#334155",
+                    fontSize: 13,
+                    marginTop: 8,
+                    fontWeight: 500,
+                  }}
+                >
+                  Paste this code inside the DressingSchool app to unlock your
+                  book.
                 </p>
 
                 <div style={{ marginTop: 12 }}>

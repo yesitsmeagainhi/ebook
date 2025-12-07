@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
   title: "Dressingschool — Men’s Fashion App",
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       */}
       <body suppressHydrationWarning={true}>
         {children}
+        <Footer />
       </body>
     </html>
   );
