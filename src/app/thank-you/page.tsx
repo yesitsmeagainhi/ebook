@@ -30,7 +30,11 @@ export default function GetCodePage() {
         }
 
         // Generate new code via secure API route
-        const res = await fetch("/api/code", { method: "POST" });
+        const res = await fetch("/api/code", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({}),
+        });
         if (!res.ok) {
           const text = await res.text().catch(() => "");
           throw new Error(`Failed to create code (${res.status}) ${text}`);

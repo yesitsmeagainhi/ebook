@@ -14,7 +14,7 @@ function randomCode(len = 6) {
 /**
  * Create a unique code with an expiry timestamp.
  */
-export async function createUniqueCode(minutesToExpire = 15) {
+export function createUniqueCode(minutesToExpire = 15) {
   const code = randomCode(6); // 👈 six characters
   const expiresAt = new Date(Date.now() + minutesToExpire * 60_000);
   return { code, expiresAt };

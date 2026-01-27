@@ -17,7 +17,7 @@ export async function POST(req: Request) {
     // generate unique 6-char code
     let attempts = 0, code = "";
     while (attempts++ < 5) {
-      const { code: c, expiresAt } = await createUniqueCode(minutesToExpire);
+      const { code: c, expiresAt } = createUniqueCode(minutesToExpire);
       const docRef = db.collection("ebookCodes").doc(ebookId).collection("codes").doc(c);
       const snap = await docRef.get();
       if (snap.exists) continue;
